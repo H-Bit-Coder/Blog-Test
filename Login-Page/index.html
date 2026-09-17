@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <style type="text/css">
+      body{
+        background-color: rgb(22, 24, 29);
+        color: rgb(145, 191, 253);
+        font-family: Alexandria, monospace;
+        font-size: 12pt;
+      }
+      #username{
+          display: block;
+          margin: auto;
+          text-align: center;
+          background-color: rgb(44, 48, 58);
+          color: rgb(145, 191, 253);
+          margin-top: 50px;
+          width: 1000px;
+          height: 500px;
+          border-style: solid;
+          border-radius: 10px;
+          border-width: 5px;
+          border-color: rgb(84, 108, 141);
+          resize: none;
+        }
+        #username::placeholder{
+          color: rgb(145, 191, 253);
+        }
+    </style>
+    <link rel="stylesheet" href="pyscript.net"/>
+    <script type="module" src="pyscript.net"></script>
+  </head>
+  <body>
+    <textarea id="username" placeholder="Username"></textarea>
+    <textarea id="password"></textarea>
+  </body>
+</html>
