@@ -20,23 +20,26 @@
       .login{
           display: flex;
           justify-self: center;
-          text-align: left;
           align-items: center;
           background-color: rgb(34, 12, 12);
           color: rgb(200, 200, 200);
           margin-top: 25px;
           width: 75%;
-          height: 50%;
+          height: 30px;
           line-height: 100%;
-          text-indent: 15px;
           border-style: solid;
           border-radius: 50px;
           border-width: 2px;
           border-color: rgb(66, 44, 44);
           resize: none;
+          text-indent: 15px;
         }
         .login::placeholder{
+          margin: auto;
           color: rgb(200, 200, 200);
+          text-indent: 15px;
+          text-align: left;
+          align-content: center;
         }
         #new-account{
           display: flex;
@@ -49,6 +52,13 @@
           background-color: rgb(34, 12, 12);
           color: rgb(200, 200, 200);
         }
+        .login:-webkit-autofill,
+        .login.login:-webkit-autofill:hover,
+        .login.login:-webkit-autofill:focus{
+          -webkit-text-fill-color: rgb(200,200,200);
+          -webkit-box-shadow: 0 0 0px 1000px rgb(34, 12, 12) insect;
+          transition: background-color 5000s ease-in-out 0s;
+        }
     </style>
     <link rel="stylesheet" href="pyscript.net"/>
     <script type="module" src="pyscript.net"></script>
@@ -57,10 +67,45 @@
     <h1 id="title">
       Blogify
     </h1>
-    <a>
-      <textarea class="login" id="username" placeholder="Username..."></textarea>
-      <textarea class="login" id="password" placeholder="Password..."></textarea>
-    </a>
+    <input class="login" id="username" placeholder="Username..."></input>
+    <input class="login" id="password" type="text" placeholder="Password...">
+      <script>
+    const passwordBox = document.getElementById("password");
+
+    let password = "";
+    let hideTimer;
+
+    passwordBox.addEventListener("input", function() {
+
+      // A character was added
+      if (passwordBox.value.length > password.length) {
+
+        const newCharacter = passwordBox.value.slice(-1);
+        password += newCharacter;
+
+        // Show the newest character
+        passwordBox.value =
+          "•".repeat(password.length - 1) + newCharacter;
+
+        // Reset the timer
+        clearTimeout(hideTimer);
+
+        // Hide the newest character after 1 second
+        hideTimer = setTimeout(function() {
+          passwordBox.value = "•".repeat(password.length);
+        }, 500);
+      }
+
+      // A character was deleted
+      else if (passwordBox.value.length < password.length) {
+
+        password = password.slice(0, -1);
+
+        passwordBox.value = "•".repeat(password.length);
+      }
+    });
+  </script>
+    </input>
     <script>
 
 
